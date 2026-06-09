@@ -319,7 +319,7 @@ export class ToolExecutor {
         });
         return `Shell queued: ${command}`;
     }
-    
+
     skillRoots(): string[] {
         const extra =
             process.env.SKILLS_DIRS?.split(/[;]/).map((s) => s.trim()).filter(Boolean) ?? [];
@@ -424,6 +424,11 @@ export class ToolExecutor {
                 errors.push(`shell exit ${r.status}: ${cmd}`);
         }
         return { errors };
+    }
+
+    clearStaging(): void {
+        this.overlay.clear()
+        this.deleted.clear()
     }
 }
 
