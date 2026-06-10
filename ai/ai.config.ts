@@ -1,8 +1,12 @@
-import { google } from "@ai-sdk/google";
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 
 export function getAgentModel() {
-  const modelId = process.env.AGENT_MODEL || "gemini-2.5-pro";
+  const provider = createOpenRouter({
+    apiKey: process.env.OPENROUTER_API_KEY
+  })
 
-  return google(modelId);
+  const modelId = process.env.OPENROUTER_DEFAULT_MODEL!;
+  return provider(modelId);
 }
+
 
